@@ -125,15 +125,15 @@ def convert_ere_event(output_folder='data/text2tree/ere_event', type_format='sub
 
 if __name__ == "__main__":
     type_format_name = 'subtype'
-    convert_dyiepp_event("data/text2tree/dyiepp_ace2005_%s" % type_format_name,
-                         type_format=type_format_name,
-                         ignore_nonevent=False, mark_tree=False,
-                         )
-    convert_ace2005_event("data/text2tree/one_ie_ace2005_%s" % type_format_name,
-                          type_format=type_format_name,
-                          ignore_nonevent=False,
-                          mark_tree=False
-                          )
+    # convert_dyiepp_event("data/text2tree/dyiepp_ace2005_%s" % type_format_name,
+    #                      type_format=type_format_name,
+    #                      ignore_nonevent=False, mark_tree=False,
+    #                      )
+    # convert_ace2005_event("data/text2tree/one_ie_ace2005_%s" % type_format_name,
+    #                       type_format=type_format_name,
+    #                       ignore_nonevent=False,
+    #                       mark_tree=False
+    #                       )
     convert_ere_event("data/text2tree/one_ie_ere_en_%s" % type_format_name,
                       type_format=type_format_name,
                       ignore_nonevent=False,

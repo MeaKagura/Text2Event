@@ -120,7 +120,7 @@ def DyIEPP_ace2005_file_tuple(output_folder):
 
     file_tuple = [
         (conll_2012_folder + "/train.json", output_folder + '/train'),
-        (conll_2012_folder + "/dev.json", output_folder + '/val'),
+        (conll_2012_folder + "/val.json", output_folder + '/val'),
         (conll_2012_folder + "/test.json", output_folder + '/test'),
     ]
 

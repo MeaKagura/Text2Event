@@ -440,6 +440,7 @@ def main():
             tokenizer.tgt_lang = data_args.target_lang
 
     # Start Code for Event Extraction
+    # Load event schema from file.
     if data_args.task.startswith("event"):
         decoding_type_schema = EventSchema.read_from_file(
             data_args.event_schema)
@@ -464,6 +465,7 @@ def main():
         else:
             summary_column = data_args.summary_column
     # Start Code for Event Extraction
+    # Load text_column and summary_column of event extraction.
     elif data_args.task.startswith("event"):
         dataset_columns = event_extraction_name_mapping.get(
             data_args.dataset_name, None)
@@ -513,6 +515,8 @@ def main():
         else:
             inputs = examples[text_column]
             targets = examples[summary_column]
+
+        # Add prefix and setup the tokenizer for inputs.
         inputs = [prefix + inp for inp in inputs]
         model_inputs = tokenizer(
             inputs, max_length=data_args.max_source_length, padding=padding, truncation=True)
@@ -529,9 +533,11 @@ def main():
                 [(l if l != tokenizer.pad_token_id else -100) for l in label] for label in labels["input_ids"]
             ]
 
+        # Attach tokenized labels to model_inputs.
         model_inputs["labels"] = labels["input_ids"]
         return model_inputs
 
+    # Process datasets with preprocess_function.
     if training_args.do_train:
         train_dataset = datasets["train"]
         if data_args.max_train_samples is not None:
@@ -586,6 +592,7 @@ def main():
             pad_to_multiple_of=8 if training_args.fp16 else None,
         )
 
+    # Decode predictions and labels to compute loss.
     def compute_metrics(eval_preds):
         preds, labels = eval_preds
         if isinstance(preds, tuple):
