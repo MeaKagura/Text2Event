@@ -20,7 +20,7 @@ def convert_data(src_path, tgt_path, mark_tree=False, multi_tree=False):
         converted_line = {}
         text = line['text']
         if not line.get('event_list'):
-            converted_data += [{'text': text, 'event': ""}]
+            converted_data += [{'text': text, 'event': f"{type_start}  {type_end}"}]
             continue
         events_info = line['event_list']
         if len(events_info) > 0:
@@ -96,4 +96,4 @@ output_schema_path = '../data/text2tree/one_ie_ace2005_subtype/event.schema'
 # convert_data(raw_train_data_path, output_train_data_path)
 # convert_data(raw_val_data_path, output_val_data_path)
 convert_data(raw_test_data_path, output_test_data_path)
-convert_schema(raw_schema_path, output_schema_path)
+# convert_schema(raw_schema_path, output_schema_path)
